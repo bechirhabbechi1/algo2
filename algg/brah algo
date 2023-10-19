@@ -1,0 +1,45 @@
+ALGORITHM brah-alg-chkpnt
+VAR
+    i; INTEGER:=0
+    j; INTEGER:=0
+    set1 : ARRAY_OF INTEGER[n1]; [1,2,3,4]
+    set2 : ARRAY_OF INTEGER[n2]; [2,5,6]   
+    smset : ARRAY_OF INTEGER[n1+n2]; [1,2,2,3,4,5,6]
+    tab:ARRAY_OF INTEGER[n]
+    sum_distinct:INTEGER:=0;
+    sum_commun:INTEGER:0;
+    found:BOOLEAN; true/false
+BEGIN
+    Write("input the length for the 1st")
+    Read(n1)
+    Write("input the length for the 2nd") 
+    Read(n2)
+
+    FOR k FROM 0 TO n1-1 STEP  DO
+        Read(set1[k])
+    END_FOR
+
+    FOR l FROM 0 TO n2-1 STEP  DO
+        Read(set2[l])
+    END_FOR
+
+      smset:=concat(set1,set2)  
+
+    FOR i FROM 0 TO smset.length-1 STEP DO
+        found:=false
+        FOR j FROM 0 TO smset.length-1 STEP DO
+         
+            IF (smset[i]=smset[j] AND i<>j) THEN
+                found:=true
+                sum_commun= sum_commun + smset[j]
+            END_IF
+            IF (smset[i]<>smset[j] AND i<>j) THEN
+                found:=false
+                sum_distinct= sum_distinct + smset[j]
+            END_IF                      
+        END_FOR
+    END_FOR
+
+    Write("the sum of dist is ->",sum_distinct)
+    Write("the sum of overlap is ->",sum_commun)
+END
